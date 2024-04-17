@@ -21,7 +21,7 @@ window.addEventListener("load", function () {
     effect: "fade",
     speed: 500,
     autoplay: {
-      delay: 1000,
+      delay: 300,
       disableOnInteraction: false,
     },
   });
