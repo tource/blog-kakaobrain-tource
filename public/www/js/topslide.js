@@ -27,6 +27,7 @@ window.addEventListener("load", function () {
         </div>`;
         slideTags = slideTags + test;
       }
+
       // 2. 자료를 이용해서 슬라이드에 배치할 html 을 만든다.
       // 원하는 장소에 출력해 보자.
       const whereTag = this.document.querySelector(".topslide .swiper-wrapper");
@@ -38,7 +39,7 @@ window.addEventListener("load", function () {
         loop: true,
         speed: 800,
         autoplay: {
-          delay: 5000,
+          delay: 50,
           disableOnInteraction: false,
         },
         pagination: {
