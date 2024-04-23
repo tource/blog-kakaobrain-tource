@@ -39,7 +39,7 @@ window.addEventListener("load", function () {
         loop: true,
         speed: 800,
         autoplay: {
-          delay: 50,
+          delay: 4000,
           disableOnInteraction: false,
         },
         pagination: {
