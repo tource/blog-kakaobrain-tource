@@ -41,14 +41,14 @@ window.addEventListener("load", function () {
       result.forEach((item) => {
         // console.log(item); 아이템은 {} 형태이다. .으로 접근
         const tag = ` 
-          <div class="swiper-slide">
-              <a href=${item.link} class="card-link br-20" style="background: url('./images/${item.imgpath}') no-repeat center;background-size: cover;" >
-                  <div class="card-txt">
-                      <h3 class="card-title">${item.cardname}</h3>
-                      <span class="card-count">${item.cardno}</span>
-                  </div>
-              </a>
-          </div> `;
+        <div class="swiper-slide">
+            <a href=${item.link} class="card-link br-20" style="background: url('./images/${item.imgpath}') no-repeat center;background-size: cover;" >
+                <div class="card-txt">
+                    <h3 class="card-title">${item.cardname}</h3>
+                    <span class="card-count">${item.cardno}</span>
+                </div>
+            </a>
+        </div> `;
         // console.log(tag);
         cardsTags = cardsTags + tag;
         // cardsTags += tag;
