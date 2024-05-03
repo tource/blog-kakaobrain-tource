@@ -34,6 +34,7 @@ window.addEventListener("load", function () {
     showLine(header, headerActiveValue, headerActiveClass, window.scrollY);
   });
 });
+
 // 모바일 메뉴관련
 window.addEventListener("load", function () {
   // 1. 필요로 한 DOM 요소를 보관한다.
