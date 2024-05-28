@@ -4,26 +4,40 @@ import { getCards, getNews } from "../apis/api";
 // Swiper 활용
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+// Swiper를 실시간으로 생성, 삭제하는 경우 활용
+import SwiperInit from "swiper";
 
 const MainBottomCards = () => {
   // swiper 를 보관해 두고 화면 사이즈에 따라서 만들고, 지우고
   const cardSlide = useRef(null);
   const [cardList, setCardList] = useState([]);
+  const swiperOption = {
+    loop: true,
+    spaceBetween: 20,
+    slidesPerView: 4,
+
+    onInit: swiper => {
+      cardSlide.current = swiper;
+    },
+  };
 
   const makeCardSlide = () => {
     const wWidth = window.innerWidth;
     if (wWidth > 1024) {
       // swiper 를 제거
-      if (cardSlide !== null) {
+      if (cardSlide.current) {
         // swiper 를 제거하는 코드
-        // cardSlide.destroy();
+        cardSlide.current.destroy();
         // useState 는 함수가 종료되어야 화면에 반영된다.
         // setCardSlide(null);
       }
     } else {
       // swiper 를 생성한다.
       // swiper 작동시키기(모바일에서만 작동해야함)
-      if (cardSlide === null) {
+      // 리액트 swiper에서는 destroyd 속성이 있어요.
+      if (cardSlide.current?.destroyed) {
+        // Swiper 를 실시간 만들기
+        cardSlide.current = new SwiperInit(".cardslide", swiperOption);
         // const tempSlide = new Swiper(".cardslide", {
         //   loop: true,
         //   slidesPerView: 4,
@@ -62,22 +76,16 @@ const MainBottomCards = () => {
       <h2>폴더 📁</h2>
       {/* <!-- 카드 슬라이드 --> */}
       <div className="main-bottom-cards-slide">
-        <Swiper
-          className="cardslide"
-          spaceBetween={20}
-          slidesPerView={4}
-          onInit={swiper => {
-            cardSlide.current = swiper;
-          }}
-        >
+        <Swiper className="cardslide" {...swiperOption}>
           {cardList.map((item, index) => (
-            <MainBottomCardsItem
-              key={index}
-              link={item.link}
-              imgpath={item.imgpath}
-              cardname={item.cardname}
-              cardno={item.cardno}
-            ></MainBottomCardsItem>
+            <SwiperSlide key={index}>
+              <MainBottomCardsItem
+                link={item.link}
+                imgpath={item.imgpath}
+                cardname={item.cardname}
+                cardno={item.cardno}
+              ></MainBottomCardsItem>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>

@@ -12,14 +12,12 @@ const MainBottomCardsItem = ({ link, imgpath, cardname, cardno }) => {
     return () => {};
   }, []);
   return (
-    <SwiperSlide>
-      <a href={link} className="card-link br-20" style={styleCard}>
-        <div className="card-txt">
-          <h3 className="card-title">{cardname}</h3>
-          <span className="card-count">{cardno}</span>
-        </div>
-      </a>
-    </SwiperSlide>
+    <a href={link} className="card-link br-20" style={styleCard}>
+      <div className="card-txt">
+        <h3 className="card-title">{cardname}</h3>
+        <span className="card-count">{cardno}</span>
+      </div>
+    </a>
   );
 };
 

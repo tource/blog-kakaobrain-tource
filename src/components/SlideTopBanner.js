@@ -14,6 +14,16 @@ const SlideTopBanner = () => {
   // 데이터
   const [topSlideData, setTopSlideData] = useState([]);
 
+  const swiperOption = {
+    loop: true,
+    pagination: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
+    modules: [Pagination],
+  };
+
   // axios 를 연동하는 경우는 2가지 경우가 많다.
   // 1. 초기 화면 출력용 api (로딩창 ? )
   // 2. 사용자 행동에 따른 api
@@ -41,23 +51,16 @@ const SlideTopBanner = () => {
 
   return (
     <div className="main-top-banner br-20">
-      <Swiper
-        className="bannerslide"
-        loop={true}
-        pagination={{
-          el: ".swiper-pagination",
-          clickable: true,
-        }}
-        modules={[Pagination]}
-      >
+      <Swiper className="bannerslide" {...swiperOption}>
         {/* 데이터 출력 */}
         {topSlideData.map((item, index, arr) => (
-          <SwiperSlide
-            key={index}
-            url={item.url}
-            pic={item.pic}
-            title={item.title}
-          ></SwiperSlide>
+          <SwiperSlide key={index}>
+            <SlideTopBannerItem
+              url={item.url}
+              pic={item.pic}
+              title={item.title}
+            ></SlideTopBannerItem>
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>
